@@ -22,7 +22,7 @@ func (*AuthDao) CreateUser(email string, password string, name string) int64 {
 		Name:          name,
 		CreatedAt:     createdAt,
 		UpdatedAt:     createdAt,
-		Avatar:        fmt.Sprintf("https://api.multiavatar.com/Binx %s.png", name),
+		Avatar:        fmt.Sprintf("https://lyb123.oss-cn-beijing.aliyuncs.com/log.png", name),
 		LastLoginTime: createdAt,
 		Uid:           helpers.GetUuid(),
 		UserJson:      "{}",

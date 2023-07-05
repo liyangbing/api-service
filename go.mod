@@ -10,9 +10,11 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.4.1
 	github.com/golang-module/carbon v1.6.8
 	github.com/gorilla/websocket v1.5.0
+	github.com/magiconair/properties v1.8.6
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/panjf2000/ants/v2 v2.5.0
+	github.com/qiniu/go-sdk/v7 v7.13.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/silenceper/pool v1.0.0
 	github.com/spf13/cobra v1.5.0
@@ -29,7 +31,6 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v1.3.3
 	gorm.io/gorm v1.23.5
-	gotest.tools v2.2.0+incompatible
 )
 
 require (
@@ -65,7 +66,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
@@ -77,8 +77,6 @@ require (
 	github.com/pelletier/go-toml v1.9.4 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
-	github.com/pkg/errors v0.9.1 // indirect
-	github.com/qiniu/go-sdk/v7 v7.13.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	github.com/sirupsen/logrus v1.4.2 // indirect

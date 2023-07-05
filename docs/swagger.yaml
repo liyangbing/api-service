@@ -285,7 +285,7 @@ definitions:
       uid:
         type: string
     type: object
-host: 127.0.0.1:8000
+host: 20.75.203.79:8000
 info:
   contact:
     email: pltrueover@gmail.com

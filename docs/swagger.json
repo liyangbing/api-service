@@ -12,7 +12,7 @@
         },
         "version": "1.0"
     },
-    "host": "127.0.0.1:8000",
+    "host": "20.75.203.79:8000",
     "basePath": "/api",
     "paths": {
         "/auth/githubLogin": {
