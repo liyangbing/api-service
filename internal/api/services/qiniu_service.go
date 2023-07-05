@@ -21,7 +21,7 @@ func (QiNiuService) UploadFile(localFile string, fileName string) (string, error
 
 	cfg := storage.Config{}
 	// 空间对应的机房
-	cfg.Zone = &storage.ZoneHuanan
+	cfg.Zone = &storage.ZoneBeimei
 	// 是否使用https域名
 	cfg.UseHTTPS = true
 	// 上传是否使用CDN上传加速
@@ -34,7 +34,7 @@ func (QiNiuService) UploadFile(localFile string, fileName string) (string, error
 	putExtra := storage.PutExtra{}
 	err := formUploader.PutFile(context.Background(), &ret, upToken, fileName, localFile, &putExtra)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("====fileupload", err)
 		return "", err
 	}
 

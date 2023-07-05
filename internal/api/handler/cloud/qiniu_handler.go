@@ -36,6 +36,7 @@ func (qiniu *QiNiuHandler) UploadFile(cxt *gin.Context) {
 		response.FailResponse(enum.ParamError, err.Error()).ToJson(cxt)
 		return
 	}
+	print("=======", config.Conf.Server.FilePath + "/" + file.Filename)
 	filePath := config.Conf.Server.FilePath + "/" + file.Filename
 	err = cxt.SaveUploadedFile(file, filePath)
 
@@ -44,7 +45,11 @@ func (qiniu *QiNiuHandler) UploadFile(cxt *gin.Context) {
 		return
 	}
 	var res Response
-	fileUrl, _ := Service.UploadFile(filePath, file.Filename)
+	fileUrl, err := Service.UploadFile(filePath, file.Filename)
+	if err != nil {
+		print("=======err", err.Error())
+	}
+	print("=======fileUrl", fileUrl)
 	res.FileUrl = fileUrl
 	response.SuccessResponse(res).ToJson(cxt)
 	return

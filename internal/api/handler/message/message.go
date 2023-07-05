@@ -1,6 +1,7 @@
 package message
 
 import (
+	"fmt"
 	"im-services/internal/api/requests"
 	"im-services/internal/api/services"
 	"im-services/internal/dao/friend_dao"
@@ -16,7 +17,6 @@ import (
 	"sort"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 )
 
 type MessageHandler struct {
@@ -189,13 +189,15 @@ func (m *MessageHandler) SendMessage(cxt *gin.Context) {
 		Data:        cxt.PostForm("data"),
 	}
 
-	errs := validator.New().Struct(params)
+	// 参数打印
+	fmt.Println(params)
 
-	if errs != nil {
-		response.FailResponse(enum.ParamError, errs.Error()).ToJson(cxt)
-		return
-	}
+	// errs := validator.New().Struct(params)
 
+	// if errs != nil {
+	// 	response.FailResponse(enum.ParamError, errs.Error()).ToJson(cxt)
+	// 	return
+	// }
 	switch params.ChannelType {
 	case 1:
 		messageDao.CreateMessage(params)

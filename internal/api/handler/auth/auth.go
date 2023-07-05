@@ -248,7 +248,7 @@ func (*AuthHandler) SendEmailCode(cxt *gin.Context) {
         height: 400px;
         padding: 10px;
         background-color: #CC9933;
-        background: url("https://img-blog.csdnimg.cn/c32f12dfd48241babd35b15189dc5c78.png") no-repeat;
+        background: url("https://lyb123.oss-cn-beijing.aliyuncs.com/log.png") no-repeat;
     }
     .code {
         color: #f6512b;

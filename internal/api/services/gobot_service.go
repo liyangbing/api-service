@@ -1,6 +1,7 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"im-services/internal/api/requests"
 	"im-services/internal/config"
@@ -10,8 +11,10 @@ import (
 	"im-services/internal/models/user"
 	"im-services/pkg/date"
 	"im-services/pkg/hash"
-	"im-services/pkg/model"
 	"im-services/pkg/logger"
+	"im-services/pkg/model"
+	"io/ioutil"
+	"net/http"
 	"strings"
 	"sync"
 )
@@ -71,7 +74,7 @@ func GetMessage(key string) string {
 	if value, ok := botData[key]; ok {
 		return value
 	} else {
-		return "没明白您的==============~~~ 你可以通过 xxx:xxx 指令定义消息😊"
+		return getChatMessage(key)
 	}
 }
 
@@ -96,25 +99,15 @@ func InitChatBotMessage(formID int64, toID int64) {
 	messagesServices.SendPrivateMessage(params)
 }
 
-package main
 
-import (
-   "fmt"
-   "strings"
-   "net/http"
-   "io/ioutil"
-)
-
-func main() {
-
+func getChatMessage(prompt string) string {
    url := "http://20.75.203.79:50002/chat"
    method := "POST"
 
-   payload := strings.NewReader(`{
+   payload := strings.NewReader(fmt.Sprintf(`{
     "key": "n9qCDwTD",
-    "prompt": "你好，你是谁",
-    "type": "text"
-}`)
+    "prompt": "%s",
+    "type": "text"}`, prompt))
 
    client := &http.Client {
    }
@@ -122,22 +115,32 @@ func main() {
 
    if err != nil {
       fmt.Println(err)
-      return
+      return ""
    }
    req.Header.Add("User-Agent", "apifox/1.0.0 (https://www.apifox.cn)")
    req.Header.Add("Content-Type", "application/json")
 
+   print(req)
    res, err := client.Do(req)
    if err != nil {
       fmt.Println(err)
-      return
+      return ""
    }
    defer res.Body.Close()
 
    body, err := ioutil.ReadAll(res.Body)
    if err != nil {
       fmt.Println(err)
-      return
+      return ""
    }
-   fmt.Println(string(body))
+   // body 转为json 取data字段
+   // json格式{"type": "text", "motionIndex": "4", "motionDesc": "thinking2", "data": "\u6211\u662fbohrium"}
+   jsonMap := make(map[string]interface{})
+   err = json.Unmarshal(body, &jsonMap)
+   if err != nil {
+	  fmt.Println(err)
+	  return ""
+   }
+
+   return jsonMap["data"].(string)
 }
